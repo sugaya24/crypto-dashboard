@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home 1`] = `
+<div>
+  <div>
+    <main>
+      <h2
+        class="chakra-heading css-1dklj6k"
+      >
+        Crypto Dashboard
+      </h2>
+    </main>
+  </div>
+</div>
+`;
