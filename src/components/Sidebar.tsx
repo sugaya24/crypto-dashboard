@@ -19,21 +19,23 @@ const LIST_MENU = [
 
 export const Sidebar = () => {
   return (
-    <Box h={`100%`} m={4} p={4} bgColor={`gray.100`} borderRadius={`20`}>
-      <Heading my={8} mx={2} size={`md`}>
-        Crypto Dashboard
-      </Heading>
-      <List>
-        {LIST_MENU.map((list) => (
-          <ListItem mx={2} mb={4} key={list.name}>
-            <Link href={list.href} passHref>
-              <CuiLink fontSize={`xl`} fontWeight={`semibold`}>
-                {list.name}
-              </CuiLink>
-            </Link>
-          </ListItem>
-        ))}
-      </List>
+    <Box h={`100%`} p={4}>
+      <Box h={`100%`} p={4} bgColor={`gray.100`} borderRadius={`20`}>
+        <Heading my={8} mx={2} size={`md`}>
+          Crypto Dashboard
+        </Heading>
+        <List>
+          {LIST_MENU.map((list) => (
+            <ListItem mx={2} mb={4} key={list.name}>
+              <Link href={list.href} passHref>
+                <CuiLink fontSize={`xl`} fontWeight={`semibold`}>
+                  {list.name}
+                </CuiLink>
+              </Link>
+            </ListItem>
+          ))}
+        </List>
+      </Box>
     </Box>
   );
 };

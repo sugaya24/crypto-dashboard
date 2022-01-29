@@ -7,7 +7,7 @@ type Props = {
 
 export const Layout = ({ children }: Props) => {
   return (
-    <Box h={`100vh`} className={`layout`}>
+    <Box h={`100vh`} w={`100%`} className={`layout`}>
       {children}
     </Box>
   );
