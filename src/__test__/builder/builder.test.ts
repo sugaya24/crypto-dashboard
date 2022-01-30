@@ -2,6 +2,7 @@ import {
   getCoinChartHistory,
   getCoinsListData,
   getCoinsListWithHistory,
+  getRateOfChange,
 } from '../../builder/lists';
 import { server } from '../../mocks/server';
 import { THistory, TList } from '../../../types/lists';
@@ -46,5 +47,14 @@ describe(`builder`, () => {
     expect(coinsList[0].symbol).toBe(expectedList.symbol);
     expect(coinsList[0].image).toBe(expectedList.image);
     expect(coinsList[0].prices[0][0]).toBe(expectedList.prices[0][0]);
+  });
+
+  test(`getRateOfChange`, async () => {
+    const percentage = await getRateOfChange(`bitcoin`);
+    const expectedPercentage =
+      Math.round((36262.05786498483 / 35032.676110526365) * 100 * 100) / 100 -
+      100;
+
+    expect(percentage).toBe(expectedPercentage);
   });
 });

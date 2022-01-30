@@ -5,6 +5,7 @@ export type TList = {
   image: string;
   symbol: string;
   prices?: number[][];
+  rateOfChange?: number;
 };
 
 export type THistory = {

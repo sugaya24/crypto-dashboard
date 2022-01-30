@@ -15,7 +15,7 @@ export const Main = ({ lists }: Props) => {
       <HStack w={`100%`} spacing={4} overflowX={`scroll`}>
         {lists.length !== 0 ? (
           lists.map((list: TList) => (
-            <Box key={list.id}>
+            <Box h={`100%`} key={list.id}>
               <CoinCard list={list} />
             </Box>
           ))

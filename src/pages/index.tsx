@@ -4,8 +4,8 @@ import { Box } from '@chakra-ui/react';
 import { getCoinsListWithHistory } from '../builder/lists';
 import { useEffect, useState } from 'react';
 import { TList } from 'types/lists';
-import { Sidebar } from '@/components/Sidebar';
 import { Main } from '@/components/Main';
+import { Sidebar } from '@/components/Sidebar';
 
 export default function Home() {
   const [lists, setLists] = useState<TList[]>([]);

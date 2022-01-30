@@ -33,7 +33,7 @@ export const getCoinChartHistory = async (id: string): Promise<THistory> => {
     {
       params: {
         vs_currency: `usd`,
-        days: 1,
+        days: 7,
       },
     },
   );
@@ -46,7 +46,15 @@ export const getCoinsListWithHistory = async (): Promise<TList[]> => {
     coinsList.map(async (coin) => {
       const coinChartHistory: THistory = await getCoinChartHistory(coin.id);
       coin.prices = coinChartHistory.prices;
+      coin.rateOfChange = await getRateOfChange(coin.id);
       return coin;
     }),
   );
+};
+
+export const getRateOfChange = async (id: string): Promise<number> => {
+  const rateOfChange = await getCoinChartHistory(id).then(
+    (res) => (res.prices[res.prices.length - 1][1] / res.prices[0][1]) * 100,
+  );
+  return Math.round(rateOfChange * 100) / 100 - 100;
 };
