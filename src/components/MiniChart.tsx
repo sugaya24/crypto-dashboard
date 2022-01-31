@@ -25,7 +25,13 @@ ChartJS.register(
   Legend,
 );
 
-export const MiniChart = ({ list }: { list: TList }) => {
+export const MiniChart = ({
+  list,
+  isIncreased,
+}: {
+  list: TList;
+  isIncreased: boolean;
+}) => {
   const { prices } = list;
 
   const options: ChartOptions<any> = {
@@ -51,12 +57,16 @@ export const MiniChart = ({ list }: { list: TList }) => {
   };
 
   const data: ChartData<'line', number[], string> = {
-    labels: prices!.map((price) => moment(price[0]).format(`YY/MM/DD hh:mm`)),
+    labels: prices!.map((price) => moment(price[0]).format(`MMM. DD HH:mm`)),
     datasets: [
       {
         borderWidth: 2,
-        backgroundColor: `rgba(40, 167, 69, .9)`,
-        borderColor: `rgba(40, 167, 69, .9)`,
+        backgroundColor: isIncreased
+          ? `rgba(40, 167, 69, .9)`
+          : `rgba(229, 62, 62, .9)`,
+        borderColor: isIncreased
+          ? `rgba(40, 167, 69, .9)`
+          : `rgba(229, 62, 62, .9)`,
         data: prices!.map((price: number[]) => price[1]),
       },
     ],
