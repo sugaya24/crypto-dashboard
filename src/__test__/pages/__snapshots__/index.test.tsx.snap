@@ -87,10 +87,10 @@ exports[`Home show home page 1`] = `
         </div>
       </div>
       <div
-        class="main-content css-1itedxk"
+        class="main-content css-byicjd"
       >
         <div
-          class="css-34lzpl"
+          class="css-1eyj61a"
         >
           <div
             class="chakra-stack css-84zodg"
@@ -131,16 +131,41 @@ exports[`Home show home page 1`] = `
           </div>
         </div>
         <div
-          class="chakra-stack css-11u7ti3"
+          class="chakra-stack css-12gxenb"
         >
           <div
-            class="chakra-spinner css-1dn0ijt"
+            class="css-11eq2yu"
           >
-            <span
-              class="css-f8n5zr"
+            <div
+              class="chakra-spinner css-1dn0ijt"
             >
-              Loading...
-            </span>
+              <span
+                class="css-f8n5zr"
+              >
+                Loading...
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="css-i9gxme"
+        >
+          <div
+            class="css-10klw3m"
+          >
+            <div
+              class="css-0"
+            >
+              <div
+                class="chakra-spinner css-1dn0ijt"
+              >
+                <span
+                  class="css-f8n5zr"
+                >
+                  Loading...
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

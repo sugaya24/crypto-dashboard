@@ -68,6 +68,7 @@ export const MainChart = () => {
         radius: 1,
       },
     },
+    maintainAspectRatio: false,
   };
 
   const data: ChartData<'line', number[], string> = {
@@ -82,10 +83,10 @@ export const MainChart = () => {
   };
 
   return (
-    <Box>
+    <Box h={`100%`}>
       {prices.length !== 0 ? (
-        <Box>
-          <Line data={data} options={options} />
+        <Box h={`100%`}>
+          <Line height={`100%`} data={data} options={options} />
         </Box>
       ) : (
         <Box>

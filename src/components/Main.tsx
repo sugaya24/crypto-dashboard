@@ -11,7 +11,14 @@ type Props = {
 
 export const Main = ({ lists }: Props) => {
   return (
-    <Box h={`100%`} w={`100%`} p={4} className={`main-content`}>
+    <Box
+      h={`100%`}
+      w={`100%`}
+      p={4}
+      className={`main-content`}
+      display={`flex`}
+      flexDir={`column`}
+    >
       <Header />
       <HStack w={`100%`} mb={4} spacing={4} overflowX={`scroll`}>
         {lists.length !== 0 ? (
@@ -26,7 +33,7 @@ export const Main = ({ lists }: Props) => {
           </Center>
         )}
       </HStack>
-      <Box>
+      <Box flexGrow={`1`}>
         <MainChart />
       </Box>
     </Box>
