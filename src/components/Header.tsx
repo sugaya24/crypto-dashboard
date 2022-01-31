@@ -12,7 +12,7 @@ import { BiSearch } from 'react-icons/bi';
 
 export const Header = () => {
   return (
-    <Box mt={4} mb={8}>
+    <Box my={2}>
       <HStack>
         <Heading size={`lg`}>Overview</Heading>
         <Spacer />
