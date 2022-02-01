@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { THistory } from 'types/lists';
 import { getCoinChartHistory } from '@/builder/lists';
-import { Box, Spinner } from '@chakra-ui/react';
+import { Box, Center, Spinner } from '@chakra-ui/react';
 import { CoinContext } from '@/contexts/CoinContext';
 import { Line } from 'react-chartjs-2';
 import {
@@ -18,16 +18,18 @@ import { _DeepPartialObject } from 'chart.js/types/utils';
 
 export const MainChart = () => {
   const { id, name } = useContext(CoinContext);
-  const [coinId, setCoinId] = useState<string>(id);
   const [prices, setPrices] = useState<number[][]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    setLoading(true);
     const getData = async () => {
-      const res: THistory = await getCoinChartHistory(coinId);
+      const res: THistory = await getCoinChartHistory(id);
       setPrices(res.prices);
+      setLoading(false);
     };
     getData();
-  }, []);
+  }, [id]);
 
   const options:
     | _DeepPartialObject<
@@ -42,7 +44,7 @@ export const MainChart = () => {
     responsive: true,
     plugins: {
       legend: {
-        display: false,
+        display: true,
       },
       tooltip: {
         mode: `index`,
@@ -75,6 +77,7 @@ export const MainChart = () => {
     labels: prices!.map((price) => moment(price[0]).format(`MMM. DD HH:mm`)),
     datasets: [
       {
+        label: name,
         borderWidth: 2,
         borderColor: `gray`,
         data: prices!.map((price: number[]) => price[1]),
@@ -84,14 +87,14 @@ export const MainChart = () => {
 
   return (
     <Box h={`100%`}>
-      {prices.length !== 0 ? (
+      {!loading ? (
         <Box h={`100%`}>
           <Line height={`100%`} data={data} options={options} />
         </Box>
       ) : (
-        <Box>
+        <Center h={`100%`}>
           <Spinner />
-        </Box>
+        </Center>
       )}
     </Box>
   );

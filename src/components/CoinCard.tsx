@@ -1,17 +1,28 @@
-import { Box, Heading, HStack, Image, Text, VStack } from '@chakra-ui/react';
-import React from 'react';
+import React, { useContext } from 'react';
+import { CoinContext } from '@/contexts/CoinContext';
 import { TList } from 'types/lists';
-import { MiniChart } from './MiniChart';
+import { Box, Heading, HStack, Image, Text, VStack } from '@chakra-ui/react';
+import { MiniChart } from '@/components/MiniChart';
 
 export const CoinCard = ({ list }: { list: TList }) => {
+  const { setId, setName } = useContext(CoinContext);
   const isIncreased = list.rateOfChange! > 0;
+
+  const handleClickCoinCard = (id: string, name: string) => {
+    setId(id);
+    setName(name);
+  };
 
   return (
     <Box h={`auto`} w={`250px`} p={4} borderWidth={`1px`} borderRadius={10}>
       <VStack alignItems={`start`}>
         <HStack>
           <Image boxSize={`24px`} src={list.image} alt={list.id} />
-          <Heading size={`sm`}>{`${list.name}`}</Heading>
+          <Heading
+            size={`sm`}
+            cursor={`pointer`}
+            onClick={() => handleClickCoinCard(list.id, list.name)}
+          >{`${list.name}`}</Heading>
           <Text
             as={`span`}
             textColor={`gray.500`}
