@@ -7,7 +7,11 @@ import {
   RestContext,
   RestRequest,
 } from 'msw';
-import { coinChartHistory, mockedCoinsList } from './mockResponses';
+import {
+  allCoinsList,
+  coinChartHistory,
+  mockedCoinsList,
+} from './mockResponses';
 
 export const handlers = [
   // Handles a GET /user request
@@ -33,6 +37,17 @@ export const handlers = [
         ctx.status(200),
         ctx.json({ prices: coinChartHistory.prices }),
       );
+    },
+  ),
+
+  rest.get(
+    `https://api.coingecko.com/api/v3/coins/markets`,
+    (
+      req: RestRequest<never, PathParams>,
+      res: ResponseComposition<DefaultRequestBody>,
+      ctx: RestContext,
+    ) => {
+      return res(ctx.status(200), ctx.json(allCoinsList));
     },
   ),
 ];

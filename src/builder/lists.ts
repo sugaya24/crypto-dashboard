@@ -1,6 +1,17 @@
 import axios from 'axios';
 import { THistory, TList } from 'types/lists';
 
+export const getAllCoinsList = async (): Promise<any> => {
+  return await axios
+    .get(`https://api.coingecko.com/api/v3/coins/markets`, {
+      params: {
+        vs_currency: `usd`,
+      },
+    })
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
+};
+
 export const getCoinsListData = async (): Promise<TList[]> => {
   const res = await axios.get(
     `https://api.coingecko.com/api/v3/coins/markets`,

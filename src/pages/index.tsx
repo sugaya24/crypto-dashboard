@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { TList } from 'types/lists';
 import { Main } from '@/components/Main';
 import { Sidebar } from '@/components/Sidebar';
+import { generateIndex } from '@/lib/algolia';
 
 export default function Home() {
   const [lists, setLists] = useState<TList[]>([]);
@@ -37,4 +38,9 @@ export default function Home() {
       </Box>
     </Box>
   );
+}
+
+export async function getServerSideProps() {
+  await generateIndex();
+  return { props: {} };
 }
