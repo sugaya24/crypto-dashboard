@@ -33,7 +33,7 @@ export const Main = ({ lists }: Props) => {
           </Center>
         )}
       </HStack>
-      <Box flexGrow={`1`}>
+      <Box flexGrow={1}>
         <MainChart />
       </Box>
     </Box>

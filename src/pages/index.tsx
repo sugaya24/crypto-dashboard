@@ -41,6 +41,8 @@ export default function Home() {
 }
 
 export async function getServerSideProps() {
-  await generateIndex();
+  if (process.env.NODE_ENV === `production`) {
+    await generateIndex();
+  }
   return { props: {} };
 }
