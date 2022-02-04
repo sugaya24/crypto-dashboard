@@ -10,7 +10,7 @@ import {
   Spacer,
   useDisclosure,
 } from '@chakra-ui/react';
-import algoliasearch from 'algoliasearch';
+import algoliasearch, { SearchClient } from 'algoliasearch';
 import { InstantSearch } from 'react-instantsearch-hooks';
 import { SearchBox } from './SearchBox';
 import { Hits } from './Hits';
@@ -18,11 +18,29 @@ import { HitComponent } from './HitComponent';
 import { BiSearch } from 'react-icons/bi';
 
 export const Header = () => {
-  const searchClient = algoliasearch(
+  const algoliaClient = algoliasearch(
     process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || ``,
     process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_ONLY_API_KEY || ``,
   );
+  const searchClient: SearchClient = {
+    ...algoliaClient,
+    search(requests: any) {
+      if (requests.every(({ params }: any) => !params.query)) {
+        return Promise.resolve({
+          results: requests.map(() => ({
+            hits: [],
+            nbHits: 0,
+            nbPages: 0,
+            page: 0,
+            processingTimeMS: 0,
+          })),
+        });
+      }
+      return algoliaClient.search(requests);
+    },
+  };
   const indexName = process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME || ``;
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -47,7 +65,7 @@ export const Header = () => {
           </Button>
           <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
-            <ModalContent>
+            <ModalContent maxW={`xl`}>
               <SearchBox />
               <Hits hitComponent={HitComponent} />
             </ModalContent>

@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSearchBox, UseSearchBoxProps } from 'react-instantsearch-hooks';
-import { Box, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
+import {
+  Box,
+  Divider,
+  Input,
+  InputGroup,
+  InputLeftElement,
+} from '@chakra-ui/react';
 import { BiSearch } from 'react-icons/bi';
 
 export const SearchBox = (props: UseSearchBoxProps) => {
@@ -28,9 +34,13 @@ export const SearchBox = (props: UseSearchBoxProps) => {
 
   return (
     <Box className={`ais-InstantSearch`}>
-      <InputGroup size={`lg`}>
+      <InputGroup h={`68px`}>
         <Input
+          h={`68px`}
+          pl={`68px`}
           className={`ais-SearchBox-input`}
+          _focus={{ boxShadow: `none` }}
+          borderWidth={0}
           placeholder={`Search`}
           ref={inputRef}
           value={inputValue}
@@ -41,10 +51,11 @@ export const SearchBox = (props: UseSearchBoxProps) => {
           type={`search`}
           onChange={(event) => setInputValue(event.currentTarget.value)}
         />
-        <InputLeftElement>
-          <BiSearch />
+        <InputLeftElement h={`68px`} w={`68px`}>
+          <BiSearch size={`24px`} />
         </InputLeftElement>
       </InputGroup>
+      <Divider w={`95%`} margin={`auto`} />
     </Box>
   );
 };
