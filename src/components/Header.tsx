@@ -67,7 +67,7 @@ export const Header = () => {
             <ModalOverlay />
             <ModalContent maxW={`xl`}>
               <SearchBox />
-              <Hits hitComponent={HitComponent} />
+              <Hits hitComponent={HitComponent} onClose={onClose} />
             </ModalContent>
           </Modal>
         </InstantSearch>

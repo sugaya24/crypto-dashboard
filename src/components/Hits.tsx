@@ -1,6 +1,15 @@
+import { CoinContext } from '@/contexts/CoinContext';
 import { Hit as AlgoliaHit } from '@algolia/client-search';
-import { Box, Center, Divider, List, ListItem } from '@chakra-ui/react';
-import { useHits, UseHitsProps } from 'react-instantsearch-hooks';
+import {
+  Box,
+  Center,
+  Divider,
+  List,
+  ListItem,
+  useDisclosure,
+} from '@chakra-ui/react';
+import { useContext } from 'react';
+import { useHits, UseHitsProps, useSearchBox } from 'react-instantsearch-hooks';
 import { PoweredBy } from './PoweredBy';
 
 export type HitsProps<THit> = React.ComponentProps<'div'> &
@@ -10,9 +19,19 @@ export type HitsProps<THit> = React.ComponentProps<'div'> &
 
 export function Hits<THit extends AlgoliaHit<Record<string, unknown>>>({
   hitComponent: Hit,
-}: HitsProps<THit>) {
+  onClose,
+}: HitsProps<THit> | any) {
   const { hits, results } = useHits();
   const query = results?._rawResults[0].query;
+  const { setId, setName } = useContext(CoinContext);
+  const { refine } = useSearchBox();
+
+  const handleClick = (hit: any) => {
+    setId(hit.id);
+    setName(hit.name);
+    refine(hit.id);
+    onClose();
+  };
 
   return (
     <Box>
@@ -23,7 +42,7 @@ export function Hits<THit extends AlgoliaHit<Record<string, unknown>>>({
               key={hit.objectID}
               cursor={`pointer`}
               className={`ais-Hits-item`}
-              onClick={() => console.log(hit.name)}
+              onClick={() => handleClick(hit)}
             >
               <Hit hit={hit as unknown as THit} />
               <Divider />
