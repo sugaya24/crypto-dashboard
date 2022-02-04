@@ -31,7 +31,10 @@ export default function Home() {
         h={`100%`}
         as={`main`}
         display={`grid`}
-        gridTemplateColumns={{ base: `0 1fr`, md: `340px minmax(0, 1fr)` }}
+        gridTemplateColumns={{
+          base: `1fr`,
+          md: `340px minmax(0, 1fr)`,
+        }}
       >
         <Sidebar />
         <Main lists={lists} />

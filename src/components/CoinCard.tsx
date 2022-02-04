@@ -14,7 +14,7 @@ export const CoinCard = ({ list }: { list: TList }) => {
   };
 
   return (
-    <Box h={`auto`} w={`250px`} p={4} borderWidth={`1px`} borderRadius={10}>
+    <Box h={`100%`} w={`250px`} p={4} borderWidth={`1px`} borderRadius={10}>
       <VStack alignItems={`start`}>
         <HStack>
           <Image boxSize={`24px`} src={list.image} alt={list.id} />

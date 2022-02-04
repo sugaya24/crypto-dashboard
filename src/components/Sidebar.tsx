@@ -19,7 +19,7 @@ const LIST_MENU = [
 
 export const Sidebar = () => {
   return (
-    <Box h={`100%`} p={4}>
+    <Box h={`100%`} p={4} display={{ base: `none`, md: `block` }}>
       <Box h={`100%`} p={4} bgColor={`gray.100`} borderRadius={`20`}>
         <Heading my={8} mx={2} size={`md`}>
           Crypto Dashboard

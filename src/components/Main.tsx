@@ -18,6 +18,7 @@ export const Main = ({ lists }: Props) => {
       className={`main-content`}
       display={`flex`}
       flexDir={`column`}
+      overflowX={`auto`}
     >
       <Header />
       <HStack w={`100%`} mb={4} spacing={4} overflowX={`scroll`}>

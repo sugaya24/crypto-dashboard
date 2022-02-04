@@ -65,7 +65,7 @@ export const Header = () => {
           </Button>
           <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
-            <ModalContent maxW={`xl`}>
+            <ModalContent maxW={`xl`} mx={`10`}>
               <SearchBox />
               <Hits hitComponent={HitComponent} onClose={onClose} />
             </ModalContent>
