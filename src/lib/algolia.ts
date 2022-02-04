@@ -11,8 +11,8 @@ export const generateIndex = async (): Promise<void> => {
   const index = client.initIndex(process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME!);
 
   try {
-    await index.delete();
-    await index.saveObjects(list, { autoGenerateObjectIDIfNotExist: true });
+    // await index.delete();
+    // await index.saveObjects(list, { autoGenerateObjectIDIfNotExist: true });
   } catch (error) {
     console.log(error);
     throw error;
