@@ -1,10 +1,9 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   Box,
   Button,
   Heading,
   HStack,
-  InputRightElement,
   Kbd,
   Modal,
   ModalContent,
@@ -58,6 +57,10 @@ export const Header = () => {
     };
   }, [isOpen]);
 
+  const handleClick = () => {
+    onOpen();
+  };
+
   return (
     <Box my={2}>
       <HStack>
@@ -67,7 +70,6 @@ export const Header = () => {
           <Button
             w={`100%`}
             maxW={`300px`}
-            onClick={onOpen}
             bgColor={`white`}
             shadow={`base`}
             color={`gray.400`}
@@ -79,6 +81,7 @@ export const Header = () => {
               </Box>
             }
             _hover={{ backgroundColor: `white` }}
+            onClick={handleClick}
           >
             Search
             <Spacer />

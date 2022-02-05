@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useSearchBox, UseSearchBoxProps } from 'react-instantsearch-hooks';
 import {
   Box,
@@ -8,10 +8,11 @@ import {
   InputLeftElement,
 } from '@chakra-ui/react';
 import { BiSearch } from 'react-icons/bi';
+import { SearchInputContext } from '@/contexts/SearchInputContext';
 
 export const SearchBox = (props: UseSearchBoxProps) => {
   const { query, refine, isSearchStalled } = useSearchBox(props);
-  const [inputValue, setInputValue] = useState(query);
+  const { inputValue, setInputValue } = useContext(SearchInputContext);
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Track when the value coming from the React state changes to synchronize
@@ -31,6 +32,22 @@ export const SearchBox = (props: UseSearchBoxProps) => {
       setInputValue(query);
     }
   }, [query]);
+
+  const upAndDownHandler = (e: any) => {
+    const { key } = e;
+    if (key === `ArrowDown` || key === `ArrowUp`) {
+      e.preventDefault();
+    }
+    return;
+  };
+
+  React.useEffect(() => {
+    window.addEventListener(`keydown`, (e) => upAndDownHandler(e));
+
+    return () => {
+      window.removeEventListener(`keydown`, upAndDownHandler);
+    };
+  });
 
   return (
     <Box className={`ais-InstantSearch`}>
