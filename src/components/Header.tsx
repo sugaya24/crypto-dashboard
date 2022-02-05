@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import {
   Box,
   Button,
   Heading,
   HStack,
+  InputRightElement,
+  Kbd,
   Modal,
   ModalContent,
   ModalOverlay,
@@ -41,7 +43,20 @@ export const Header = () => {
   };
   const indexName = process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME || ``;
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
+
+  const handleKeyDownEnter = (event: KeyboardEvent) => {
+    if (event.code === `KeyK` && event.metaKey && !isOpen) {
+      onToggle();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener(`keydown`, handleKeyDownEnter);
+    return () => {
+      document.removeEventListener(`keydown`, handleKeyDownEnter);
+    };
+  }, [isOpen]);
 
   return (
     <Box my={2}>
@@ -50,7 +65,7 @@ export const Header = () => {
         <Spacer />
         <InstantSearch indexName={indexName} searchClient={searchClient}>
           <Button
-            minW={`200px`}
+            w={`100%`}
             maxW={`300px`}
             onClick={onOpen}
             bgColor={`white`}
@@ -58,6 +73,11 @@ export const Header = () => {
             color={`gray.400`}
             fontWeight={`normal`}
             leftIcon={<BiSearch />}
+            rightIcon={
+              <Box display={{ base: `none`, md: `block` }}>
+                <Kbd>⌘</Kbd> <Kbd>K</Kbd>
+              </Box>
+            }
             _hover={{ backgroundColor: `white` }}
           >
             Search

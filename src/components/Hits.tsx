@@ -1,13 +1,6 @@
 import { CoinContext } from '@/contexts/CoinContext';
 import { Hit as AlgoliaHit } from '@algolia/client-search';
-import {
-  Box,
-  Center,
-  Divider,
-  List,
-  ListItem,
-  useDisclosure,
-} from '@chakra-ui/react';
+import { Box, Center, Divider, List, ListItem } from '@chakra-ui/react';
 import { useContext } from 'react';
 import { useHits, UseHitsProps, useSearchBox } from 'react-instantsearch-hooks';
 import { PoweredBy } from './PoweredBy';
