@@ -1,3 +1,6 @@
+# Crypto Dashboard
+![crypto-dashboard](https://user-images.githubusercontent.com/13996983/156912493-ebf8297f-4a2a-4557-be2f-c62d1a55a9a4.gif)
+
 ## Features
 
 - ⚡️ Next.js 12
